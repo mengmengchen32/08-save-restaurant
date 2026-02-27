@@ -1,6 +1,6 @@
 ---
 name: save-restaurant
-description: "Save a restaurant to Google Maps. Triggers when user mentions a restaurant recommendation, a place to try, 'save this place', 'add to my list', or any food/dining spot to remember."
+description: "Save a restaurant to Google Maps. Triggers when user mentions a restaurant recommendation, a place to try, 'save this place', 'add to my list', or any food/dining spot to remember. Also triggers when the user sends a photo (storefront, menu, receipt, screenshot of a text, Instagram post) with intent to save a restaurant."
 metadata:
   {"openclaw":{"emoji":"📍","requires":{"bins":["goplaces"]}}}
 ---
@@ -24,6 +24,13 @@ Extract **two things** from the user's message:
    - Vague: "amazing Thai place near Mountain View"
    - Partial: "Amber India in Los Altos"
    - Specific: "Amber India, 4926 El Camino Real, Los Altos, CA"
+   - **Photo/image**: If the user sends a photo, examine it carefully. It could be:
+     - A restaurant storefront or sign → read the name
+     - A menu or receipt → read the restaurant name (often at the top)
+     - A screenshot of a text conversation → extract the restaurant being recommended
+     - An Instagram/Yelp/Google Maps screenshot → read the restaurant name and location
+     - A business card → read name and address
+   - Extract whatever restaurant name and location you can see. If the image is unclear, ask the user to clarify.
 
 2. **Collection name** (optional) — look for phrases like:
    - "save to my Japan list" → collection = "Japan"
